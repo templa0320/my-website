@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>⚠️ 爆発までのカウントダウン ⚠️</title>
+  <style>
+    body {
+      background-color: black;
+      color: red;
+      font-family: "Courier New", monospace;
+      text-align: center;
+      padding-top: 100px;
+      transition: background-color 0.5s;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 30px;
+    }
+    #countdown {
+      font-size: 5em;
+      color: white;
+    }
+    #explosion {
+      font-size: 6em;
+      display: none;
+      animation: boom 0.5s ease-in-out;
+    }
+    @keyframes boom {
+      0% { transform: scale(0.5); opacity: 0; }
+      50% { transform: scale(1.5); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .note {
+      margin-top: 50px;
+      color: gray;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>あなたのスマホが爆発するまで</h1>
+  <div id="countdown">5</div>
+  <div id="explosion">💥</div>
+
+  <script>
+    let seconds = 5;
+    const countdownEl = document.getElementById("countdown");
+    const explosionEl = document.getElementById("explosion");
+
+    const timer = setInterval(() => {
+      seconds--;
+      countdownEl.textContent = seconds;
+
+      if (seconds <= 0) {
+        clearInterval(timer);
+
+        // カウントを消して爆発エフェクトを表示
+        countdownEl.style.display = "none";
+        explosionEl.style.display = "block";
+        document.body.style.backgroundColor = "#ff3300";
+
+        // 少し待ってからリダイレクト
+        setTimeout(() => {
+          window.location.href = "http://web1.kcn.jp/y-inms/newpage36.html"; // ← 任意のURLに変更可
+        }, 2000); // 爆発表示して2秒後にジャンプ
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
