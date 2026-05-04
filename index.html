@@ -1,77 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>爆発</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reading Log</title>
     <style>
+        /* CSS: 全体のデザイン */
         body {
-            background: red;
-            color: white;
-            text-align: center;
-            font-family: sans-serif;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
             padding: 20px;
         }
 
-        h1 {
-            font-size: 64px;
-            margin: 20px 0;
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 30px;
         }
 
-        h4 {
-            font-size: 32px;
-            margin: 10px 0;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        p {
-            font-size: 28px;
-            margin: 20px 0;
+        /* 登録フォームのスタイル */
+        .form-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
         }
 
-        a {
-            display: inline-block;
-            font-size: 28px;
-            color: yellow;
-            text-decoration: underline;
-            margin: 20px 0;
+        .form-group {
+            margin-bottom: 15px;
         }
-        #countdown {
-            font-size: 72px;
-            margin: 40px 0;
+
+        label {
+            display: block;
+            margin-bottom: 5px;
             font-weight: bold;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* 幅を100%に収める */
+        }
+
+        button {
+            background-color: #5d6275;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #4a4e5d;
+        }
+
+        /* 本の一覧（カード型）のスタイル */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #5d6275;
+        }
+
+        .book-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+
+        .book-author {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .favorite-phrase {
+            font-style: italic;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #444;
         }
     </style>
 </head>
 <body>
-    <h1>⚠ 警告 ⚠</h1>
-    <h4>あなたのスマホは爆発します</h4>
-    <p>今すぐに以下のリンクから対処してください。</p>
-    <a href="">爆発を解除する</a>           
 
-    <div id="countdown">10</div>
+<div class="container">
+    <header>
+        <h1>My Reading Log</h1>
+        <p>心に残ったフレーズをストックする</p>
+    </header>
 
-    <script>
-        let timeLeft = 10;
-        const countdownElement = document.getElementById('countdown');
+    <!-- ステップ1: 登録フォーム -->
+    <section class="form-section">
+        <h3>新しい本を記録する</h3>
+        <div class="form-group">
+            <label>タイトル</label>
+            <input type="text" placeholder="例：コンビニ人間">
+        </div>
+        <div class="form-group">
+            <label>著者</label>
+            <input type="text" placeholder="例：村田沙耶香">
+        </div>
+        <div class="form-group">
+            <label>心に刺さったフレーズ</label>
+            <textarea rows="3" placeholder="例：普通という場所を、守らなくてはならない。"></textarea>
+        </div>
+        <button type="button">記録する</button>
+    </section>
 
-        // バイブレーション（1秒ごと）
-        function vibrate() {
-            if (navigator.vibrate) {
-                navigator.vibrate([200, 100, 200]); // 200ms振動→100ms停止→200ms振動
-            }
-        }
+    <!-- ステップ1: 表示一覧（ダミーデータ） -->
+    <section>
+        <h3>これまでの記録</h3>
+        <div class="book-grid">
+            <!-- 1冊目 -->
+            <div class="book-card">
+                <p class="book-title">コンビニ人間</p>
+                <p class="book-author">村田沙耶香</p>
+                <p class="favorite-phrase">「皆がその奇妙なものを、排除しようとする。直そうとする。」</p>
+            </div>
+            <!-- 2冊目 -->
+            <div class="book-card">
+                <p class="book-title">人間失格</p>
+                <p class="book-author">太宰治</p>
+                <p class="favorite-phrase">「恥の多い生涯を送って来ました。」</p>
+            </div>
+        </div>
+    </section>
+</div>
 
-        const timer = setInterval(() => {
-            timeLeft--;
-            countdownElement.textContent = timeLeft;
-
-            vibrate();  // 毎秒バイブレーション
-
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                document.body.style.background = 'black';
-                document.body.innerHTML = '<h1 style="color: red;">💥 爆発しました 💥</h1>';
-            }
-        }, 1000);
-    </script>
 </body>
 </html>
