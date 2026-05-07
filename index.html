@@ -45,12 +45,12 @@
             font-weight: bold;
         }
 
-        input[type="text"], textarea, select {
+        input[type="text"], textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box; /* 幅を100%に収める */
+            box-sizing: border-box;
         }
 
         button {
@@ -112,34 +112,29 @@
         <p>心に残ったフレーズをストックする</p>
     </header>
 
-    <!-- ステップ1: 登録フォーム -->
+    <!-- ステップ1: 登録フォーム (例を削除) -->
     <section class="form-section">
         <h3>新しい本を記録する</h3>
         <div class="form-group">
             <label>タイトル</label>
+            <input type="text" id="titleInput">
         </div>
         <div class="form-group">
-            <label>著者</label
+            <label>著者</label>
+            <input type="text" id="authorInput">
+        </div>
+        <div class="form-group">
+            <label>心に刺さったフレーズ</label>
+            <textarea id="phraseInput" rows="3"></textarea>
         </div>
         <button type="button">記録する</button>
     </section>
 
-    <!-- ステップ1: 表示一覧（ダミーデータ） -->
+    <!-- ステップ1: 表示一覧 (ダミーデータを削除) -->
     <section>
         <h3>これまでの記録</h3>
-        <div class="book-grid">
-            <!-- 1冊目 -->
-            <div class="book-card">
-                <p class="book-title">コンビニ人間</p>
-                <p class="book-author">村田沙耶香</p>
-                <p class="favorite-phrase">「皆がその奇妙なものを、排除しようとする。直そうとする。」</p>
-            </div>
-            <!-- 2冊目 -->
-            <div class="book-card">
-                <p class="book-title">人間失格</p>
-                <p class="book-author">太宰治</p>
-                <p class="favorite-phrase">「恥の多い生涯を送って来ました。」</p>
-            </div>
+        <div class="book-grid" id="bookGrid">
+            <!-- ここにJavaScriptで記録が追加されるようになります -->
         </div>
     </section>
 </div>
